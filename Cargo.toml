@@ -1,0 +1,26 @@
+[package]
+name = "pathz"
+version = "0.1.0"
+edition = "2021"
+description = "Simple way to semantically require relative or absolute paths"
+authors = ["Natalie Jameson <natalie@natalie.wtf>"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.86"
+diesel = { version = "2.1.6", features = ["chrono", "r2d2", "sqlite"], optional = true }
+gazebo = "0.8.1"
+itertools = "0.13.0"
+ref-cast = "1.0.23"
+serde = { version = "1.0.203", features = ["derive"], optional = true }
+thiserror = "1.0.61"
+
+[dev-dependencies]
+serde_json = "1.0.117"
+tempfile = "3.10.1"
+
+[features]
+default = ["display", "serde"]
+display = []
+serde = ["dep:serde"]
+diesel = ["dep:diesel", "serde"]
